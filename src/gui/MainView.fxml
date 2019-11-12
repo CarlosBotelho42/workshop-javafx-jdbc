@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="367.0" prefWidth="574.0" style="-fx-background-color: #696969;">
+          <children>
+            <MenuBar opacity="0.46" style="-fx-background-color: #1C1C1C;">
+              <menus>
+                <Menu mnemonicParsing="false" text="Registro">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Vendedor" />
+                        <MenuItem mnemonicParsing="false" text="Departamento" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ajuda">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+               <effect>
+                  <Glow level="0.2" />
+               </effect>
+            </MenuBar>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
