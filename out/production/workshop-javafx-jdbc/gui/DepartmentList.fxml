@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox opacity="0.76" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<VBox opacity="0.76" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DepartmentListController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #363636;">
         <items>
-          <Button mnemonicParsing="false" style="-fx-background-color: #1C1C1C;" text="Novo" textFill="#c5b9b9">
+          <Button fx:id="btNew" blendMode="OVERLAY" mnemonicParsing="false" onAction="#onBtNewAction" style="-fx-background-color: #1C1C1C;" text="Novo" textFill="#c5b9b9">
                <effect>
                   <DropShadow />
                </effect></Button>
@@ -34,10 +34,10 @@
             </Lighting>
          </effect>
       </ToolBar>
-      <TableView prefHeight="223.0" prefWidth="595.0" style="-fx-background-color: #A9A9A9;">
+      <TableView fx:id="tableViewDepartment" prefHeight="223.0" prefWidth="595.0" style="-fx-background-color: #A9A9A9;">
         <columns>
-          <TableColumn prefWidth="75.0" text="Id" />
-          <TableColumn prefWidth="75.0" text="Nome" />
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Nome" />
         </columns>
       </TableView>
    </children>
