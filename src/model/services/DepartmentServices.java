@@ -1,5 +1,7 @@
 package model.services;
 
+import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.entities.Department;
 
 import java.util.ArrayList;
@@ -7,13 +9,11 @@ import java.util.List;
 
 public class DepartmentServices  {
 
-    public List<Department> FindAll(){
-        List<Department> list = new ArrayList<>();
-        list.add(new Department(1,"Livros"));
-        list.add(new Department(2,"Filmes"));
-        list.add(new Department(3,"CDs"));
+    private DepartmentDao dao = DaoFactory.createDepartmentDao(); // injeção de dependencia
 
-        return list;
+    public List<Department> FindAll(){
+        return dao.findAll();
+
     }
 
 }
