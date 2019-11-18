@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
 import model.entities.Department;
 import model.services.DepartmentServices;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangeListener {
 
     private DepartmentServices service;
 
@@ -68,7 +69,7 @@ public class DepartmentListController implements Initializable {
         tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
     }
 
-    public void updateTableView() {
+    public void updateTableView() { //atualizar lista
         if (service == null) {
             throw new IllegalStateException("Service was null");
         }
@@ -86,6 +87,7 @@ public class DepartmentListController implements Initializable {
             controller.setDepartment(obj);
             controller.updateFormData();
             controller.setServices(new DepartmentServices());
+            controller.subscribeDataChangeListener(this); //receber o proprio evento
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Enter Department data");
@@ -98,5 +100,11 @@ public class DepartmentListController implements Initializable {
         catch (IOException e) {
             Alerts.showAlert("IO Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
         }
+    }
+
+    @Override
+    public void onDataChanged() {
+        updateTableView(); //atualizar lista
+
     }
 }

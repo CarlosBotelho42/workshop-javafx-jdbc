@@ -1,8 +1,11 @@
 package gui;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import db.DbException;
+import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Constraints;
 import gui.util.Utils;
@@ -21,6 +24,8 @@ public class DepartmentFormController implements Initializable {
    private Department entity;
 
    private DepartmentServices services;
+
+   private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
     @FXML
     private TextField txtId;
@@ -47,6 +52,11 @@ public class DepartmentFormController implements Initializable {
 
     }
 
+    public void subscribeDataChangeListener(DataChangeListener listener){
+        dataChangeListeners.add(listener);
+
+    }
+
     @FXML
     public void onBtSaveAction(ActionEvent event) {
         if(entity == null) {
@@ -59,12 +69,18 @@ public class DepartmentFormController implements Initializable {
             try {
                 entity = getFormData();
                 services.saveOrUpdate(entity);
+                notifyDataChangeListeners();
                 Utils.currentStage(event).close();
             }
             catch (DbException e){
                 Alerts.showAlert("Erro ao salvar obj", null, e.getMessage(), Alert.AlertType.ERROR);
             }
+    }
 
+    private void notifyDataChangeListeners() {
+        for(DataChangeListener listener : dataChangeListeners){
+            listener.onDataChanged();
+        }
     }
 
     private Department getFormData() {
@@ -78,8 +94,8 @@ public class DepartmentFormController implements Initializable {
     }
 
     @FXML
-    public void onBtCancelAction() {
-        System.out.println("Botao cancelarrrrrrrrrrrrrrrrr");
+    public void onBtCancelAction(ActionEvent event) {
+        Utils.currentStage(event).close(); //fechar janelaaaa
     }
 
     @Override
@@ -101,9 +117,6 @@ public class DepartmentFormController implements Initializable {
         txtName.setText(String.valueOf(entity.getName()));
 
     }
-    
-    
-
 
 
 }
