@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
+import model.entities.Seller;
 import model.exceptions.ValidationException;
 import model.services.DepartmentServices;
 

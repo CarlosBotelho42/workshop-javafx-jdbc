@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox opacity="0.76" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SellerListController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #363636;">
+        <items>
+          <Button fx:id="btNew" blendMode="OVERLAY" mnemonicParsing="false" onAction="#onBtNewAction" style="-fx-background-color: #1C1C1C;" text="Novo" textFill="#c5b9b9">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Label text="Registro Departamento " textFill="#c5b9b9">
+               <font>
+                  <Font name="Times New Roman" size="14.0" />
+               </font>
+            </Label>
+        </items>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.28" surfaceScale="1.22">
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </ToolBar>
+      <TableView fx:id="tableViewSeller" prefHeight="223.0" prefWidth="595.0" style="-fx-background-color: #A9A9A9;">
+        <columns>
+          <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="tableColumnName" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" />
+            <TableColumn fx:id="tableColumnREMOVE" prefWidth="75.0" />
+        </columns>
+      </TableView>
+   </children>
+   <padding>
+      <Insets left="5.0" top="5.0" />
+   </padding>
+</VBox>
