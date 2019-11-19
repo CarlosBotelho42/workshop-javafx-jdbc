@@ -19,6 +19,7 @@ import model.services.DepartmentServices;
 import model.services.SellerServices;
 
 import java.net.URL;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -128,6 +129,27 @@ public class SellerFormController implements Initializable {
         }
         obj.setName(txtName.getText());
 
+        if(txtEmail.getText() == null || txtEmail.getText().trim().equals("")){
+            exception.addError("email", "O campo nao pode ser vazio");
+        }
+        obj.setEmail(txtEmail.getText());
+
+        if(dpBirthDate.getValue() == null){
+            exception.addError("birthDate", "O campo nao pode ser vazio");
+        }
+        else {
+            Instant instant = Instant.from(dpBirthDate.getValue().atStartOfDay(ZoneId.systemDefault()));
+            obj.setBirthDate(Date.from(instant));
+        }
+
+        if(txtBaseSalary.getText() == null || txtBaseSalary.getText().trim().equals("")){
+            exception.addError("name", "O campo nao pode ser vazio");
+
+        }
+        obj.setBaseSalary(Utils.tryParseToDouble(txtBaseSalary.getText())); //tratou para double o metodo ta na classe Utils
+
+        obj.setDepartment(comboBoxDepartment.getValue());
+
         if(exception.getErrors().size() > 0){
             throw exception;
 
@@ -195,10 +217,10 @@ public class SellerFormController implements Initializable {
     private void setErrorMessage(Map<String,String> error){
         Set<String> fields = error.keySet();
 
-        if(fields.contains("name")){
-            labelErrorName.setText(error.get("name"));
-
-        }
+        labelErrorName.setText((fields.contains("nome") ? error.get("nome") : "")); //condicional ternariooooo
+        labelErrorEmail.setText((fields.contains("email") ? error.get("email") : ""));
+        labelErrorBirthDate.setText((fields.contains("birthDate") ? error.get("birthDate") : ""));
+        labelErrorBaseSalary.setText((fields.contains("baseSalary") ? error.get("baseSalary") : ""));
 
     }
 
